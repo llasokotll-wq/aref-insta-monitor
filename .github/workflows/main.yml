@@ -1,24 +1,29 @@
-name: Insta Monitor
+name: Aref Insta Monitor
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
-  workflow_dispatch:
+    - cron: '0 * * * *'  # اجرای خودکار هر ساعت
+  workflow_dispatch:     # امکان اجرای دستی
 
 jobs:
-  run-monitor:
+  monitor_job:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python
+
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
-      - name: Install requests
-        run: pip install requests
-      - name: Generate pages list
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate usernames
         run: python generate_pages.py
-      - name: Run monitor
+
+      - name: Run monitor script
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           CHAT_ID: ${{ secrets.CHAT_ID }}
