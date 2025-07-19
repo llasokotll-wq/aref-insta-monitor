@@ -12,9 +12,8 @@ def notify(username, message):
     }
     requests.post(url, data=data)
 
-# شبیه‌سازی اسکن پیج‌ها
 with open("pages.txt") as f:
     for username in f:
         username = username.strip()
-        if "aref" in username.lower():  # فقط مثال برای پیدا کردن اسم تو
+        if "aref" in username.lower():
             notify(username, f"اسم عارف در پیج {username} دیده شد.")
