@@ -1,21 +1,17 @@
 # generate_pages.py
 
-first_names = [
-    "ali", "reza", "mohammad", "hossein", "amir", "sina", "mehdi",
-    "maryam", "zahra", "fateme", "narges", "sara", "shima", "elham"
-]
+import random
 
-suffixes = [
-    "", "123", "_2024", "_official", "_real", "_insta", ".ir", "_tv",
-    "_fan", "1370", "1380", "66", "x", "_fb", "_page"
-]
+first_names = ["ali","reza","mohammad","amir","sina","mehdi","maryam","zahra","fateme","narges","sara","shima","elham","parsa","armin","navid","hamed","vahid","pouya","zahra"]
+suffixes = ["","123","_2024","_official",".ir","_tv","_fan","_page","_club","_iran","_music","_team","_group"]
 
-count = 0
 with open("pages.txt", "w") as f:
-    for name in first_names:
-        for suf in suffixes:
-            username = f"{name}{suf}"
-            f.write(username + "\n")
-            count += 1
+    count = 0
+    while count < 100000:
+        name = random.choice(first_names)
+        suf = random.choice(suffixes)
+        user = f"{name}{suf}{random.randint(1,99999)}"
+        f.write(user + "\n")
+        count += 1
 
-print(f"✅ {count} یوزرنیم ساخته شد و در فایل pages.txt ذخیره شد.")
+print("✅ Generated 100,000 usernames in pages.txt")
